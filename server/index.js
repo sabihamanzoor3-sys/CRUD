@@ -7,7 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/CRUD");
+mongoose.connect("mongodb+srv://sabihamanzoor3_db_user:IDk0s5lOnogqrd2A@cluster0.un6cvlh.mongodb.net/?appName=Cluster0")
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log("MongoDB Error:", err));
 
 app.get("/", (req, res) => {
     UserModel.find({})
@@ -36,7 +38,7 @@ app.put("/updateUser/:id", (req, res) => {
 app.delete("/deleteUser/:id", (req, res)=> {
     const id = req.params.id;
     UserModel.findByIdAndDelete({_id: id})
-    .then(users => res.json(users))
+    .then(res => res.json(res))
     .catch(err => res.json(err))
 });
 
