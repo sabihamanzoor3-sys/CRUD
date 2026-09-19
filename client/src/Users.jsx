@@ -9,7 +9,7 @@ function Users () {
         axios.get("https://crud-server-orcin.vercel.app")
         .then(result => {
             console.log(result.data);
-        setUser(Array.isArray(result.data) ? result.data : []);
+        setUsers(Array.isArray(result.data) ? result.data : []);
         })
         .catch(err => console.log(err))
     }, []);
