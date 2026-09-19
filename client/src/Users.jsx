@@ -7,12 +7,15 @@ function Users () {
     
     useEffect(() => {
         axios.get("https://crud-server-orcin.vercel.app")
-        .then(result => setUsers(result.data))
+        .then(result => {
+            console.log(result.data);
+        setUser(Array.isArray(result.data) ? result.data : []);
+        })
         .catch(err => console.log(err))
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete("https://crud-server-orcin.vercel.app/deleteUser"+id)
+        axios.delete("https://crud-server-orcin.vercel.app/deleteUser/"+id)
         .then(res => {console.log(res)
             window.location.reload()
         })
