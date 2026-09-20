@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://sabihamanzoor3_db_user:IDk0s5lOnogqrd2A@cluster0.un6cvlh.mongodb.net/?appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log("MongoDB Error:", err));
 
@@ -48,6 +49,7 @@ app.post("/createUser", (req, res) => {
     .catch(err => res.json(err))
 });
 
+if (process.env.NODE_ENV !== 'production')
 app.listen(3001, () => {
     console.log("Server is Running");
 })
