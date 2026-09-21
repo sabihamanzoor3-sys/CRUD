@@ -3,9 +3,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const UserModel = require("./models/Users");
+require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URL)
@@ -52,4 +57,8 @@ app.post("/createUser", (req, res) => {
 if (process.env.NODE_ENV !== 'production')
 app.listen(3001, () => {
     console.log("Server is Running");
-})
+ })
+}
+
+module.exports = app;
+
