@@ -54,7 +54,7 @@ app.post("/createUser", (req, res) => {
     .catch(err => res.json(err))
 });
 
-if (process.env.NODE_ENV !== 'production')
+if (process.env.NODE_ENV !== 'production') {
 app.listen(3001, () => {
     console.log("Server is Running");
  })
